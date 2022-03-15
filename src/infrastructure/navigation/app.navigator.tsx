@@ -29,6 +29,12 @@ export const TabBg: React.FC<Props> = ({ color = "#fff", ...props }) => {
   );
 };
 
+export type RootParamList = {
+  DummyScreenLeft: undefined;
+  HomeScreen: undefined;
+  DummyScreenRight: undefined;
+};
+
 const Tab = createBottomTabNavigator();
 
 const DummyScreen = () => null;
