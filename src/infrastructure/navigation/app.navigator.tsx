@@ -31,17 +31,7 @@ export const TabBg: React.FC<Props> = ({ color = "#fff", ...props }) => {
 
 const Tab = createBottomTabNavigator();
 
-const SecondScreen = () =>
-  //   <SafeArea>
-  //     <Paragraph>Second screen</Paragraph>
-  //   </SafeArea>
-  null;
-
-const ThirdScreen = () =>
-  //   <SafeArea>
-  //     <Paragraph>Third screen</Paragraph>
-  //   </SafeArea>
-  null;
+const DummyScreen = () => null;
 
 const AppNavigator = () => {
   const theme = useTheme();
@@ -61,8 +51,8 @@ const AppNavigator = () => {
       initialRouteName="HomeScreen"
     >
       <Tab.Screen
-        name="slot1"
-        component={SecondScreen}
+        name="DummyScreenLeft"
+        component={DummyScreen}
         options={{ tabBarLabel: () => null, tabBarIcon: () => null }}
         listeners={{
           tabPress: (e) => {
@@ -87,8 +77,8 @@ const AppNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="slot2"
-        component={ThirdScreen}
+        name="DummyScreenRight"
+        component={DummyScreen}
         options={{ tabBarLabel: () => null, tabBarIcon: () => null }}
         listeners={{
           tabPress: (e) => {
