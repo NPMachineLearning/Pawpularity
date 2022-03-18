@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Button, Card } from "react-native-paper";
+import { Button, Card, IconButton, useTheme } from "react-native-paper";
 import * as ImagePicker from "expo-image-picker";
 import { SafeArea } from "../../../components/utilities/safe-area.component";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { HomeNavigatorParamList } from "../../../infrastructure/navigation/home.navigator";
-import { Alert } from "react-native";
+import { Alert, View } from "react-native";
+import {
+  ButtonWrapper,
+  CardWrapper,
+  HomeWrapper,
+} from "../components/home.styled";
 
 type Props = NativeStackScreenProps<HomeNavigatorParamList, "HomeScreen">;
 
@@ -12,6 +17,7 @@ export const HomeScreen = ({ navigation }: Props) => {
   const [isMeidaPermitted, setIsMediaPermitted] = useState(false);
   const [isCameraPermitted, setIsCameraPermitted] = useState(false);
   const [imageURI, setImageURI] = useState<string | null>(null);
+  const theme = useTheme();
 
   useEffect(() => {
     (async () => {
@@ -88,14 +94,23 @@ export const HomeScreen = ({ navigation }: Props) => {
 
   return (
     <SafeArea>
-      {imageURI ? (
-        <Card>
-          <Card.Cover source={{ uri: imageURI }} />
-        </Card>
-      ) : null}
-      <Button mode="contained" onPress={chooseMedia}>
-        Choose media
-      </Button>
+      <HomeWrapper>
+        {imageURI ? (
+          <CardWrapper>
+            <Card elevation={3}>
+              <Card.Cover source={{ uri: imageURI }} />
+            </Card>
+          </CardWrapper>
+        ) : null}
+        <ButtonWrapper>
+          <IconButton
+            icon="camera"
+            size={40}
+            color={theme.colors.primary}
+            onPress={chooseMedia}
+          />
+        </ButtonWrapper>
+      </HomeWrapper>
     </SafeArea>
   );
 };
