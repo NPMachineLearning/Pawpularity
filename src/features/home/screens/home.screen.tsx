@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Button, Card, IconButton, useTheme } from "react-native-paper";
+import { Card, IconButton, useTheme } from "react-native-paper";
 import * as ImagePicker from "expo-image-picker";
 import { SafeArea } from "../../../components/utilities/safe-area.component";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { HomeNavigatorParamList } from "../../../infrastructure/navigation/home.navigator";
-import { Alert, View } from "react-native";
+import { Alert } from "react-native";
 import {
   ButtonWrapper,
   CardWrapper,
@@ -26,8 +26,6 @@ export const HomeScreen = ({ navigation }: Props) => {
       const cameraPermissionResult =
         await ImagePicker.getCameraPermissionsAsync();
 
-      console.log(mediaPermissionResult);
-      console.log(cameraPermissionResult);
       if (!mediaPermissionResult.granted) {
         const status = await ImagePicker.requestMediaLibraryPermissionsAsync();
         setIsMediaPermitted(status.granted);
@@ -57,8 +55,6 @@ export const HomeScreen = ({ navigation }: Props) => {
       quality: 1,
     });
 
-    console.log(result);
-
     if (!result.cancelled) {
       setImageURI(result.uri);
     }
@@ -77,8 +73,6 @@ export const HomeScreen = ({ navigation }: Props) => {
       allowsEditing: true,
       quality: 1,
     });
-
-    console.log(result);
 
     if (!result.cancelled) {
       setImageURI(result.uri);
