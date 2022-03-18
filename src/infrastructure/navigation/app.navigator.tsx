@@ -1,18 +1,15 @@
 import React from "react";
 import {
   BottomTabBarButtonProps,
-  BottomTabBarProps,
   BottomTabNavigationOptions,
   createBottomTabNavigator,
 } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
-import { HomeScreen } from "../../features/home/screens/home.screen";
-import { Paragraph, useTheme } from "react-native-paper";
-import { SafeArea } from "../../components/utilities/safe-area.component";
+import { useTheme } from "react-native-paper";
 import { TabBarNavigator } from "../../components/styledTabBar/tabBarNavigator.component";
-import { TouchableOpacity, View } from "react-native";
 import Svg, { Path, SvgProps } from "react-native-svg";
 import { TabBarAuxiliaryButton } from "../../components/styledTabBar/auxiliaryButton.component";
+import HomeNavigator from "./home.navigator";
 
 type Props = SvgProps & {
   color?: string;
@@ -31,7 +28,7 @@ export const TabBg: React.FC<Props> = ({ color = "#fff", ...props }) => {
 
 export type RootParamList = {
   DummyScreenLeft: undefined;
-  HomeScreen: undefined;
+  HomeNavigator: undefined;
   DummyScreenRight: undefined;
 };
 
@@ -54,7 +51,7 @@ const AppNavigator = () => {
       tabBarColor={tabBarColor}
       tabBarBgColor={tabBarBgColor}
       screenOptions={getScreenOptions}
-      initialRouteName="HomeScreen"
+      initialRouteName="HomeNavigator"
     >
       <Tab.Screen
         name="DummyScreenLeft"
@@ -68,8 +65,8 @@ const AppNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="HomeScreen"
-        component={HomeScreen}
+        name="HomeNavigator"
+        component={HomeNavigator}
         options={{
           tabBarButton: (props: BottomTabBarButtonProps) => (
             <TabBarAuxiliaryButton
